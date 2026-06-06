@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>PRADEEP – Full Stack Developer</title>
+  <meta name="theme-color" content="#fafafa" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="Full Stack Developer — React, Python, Django, Flask. Available for freelance." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet" />
+
+  <!-- AOS Animation Library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="light" id="body">
+
+  <!-- ═══ PAGE LOADER ═══ -->
+  <div id="pageLoader">
+    <div class="loader-logo">P</div>
+    <div class="loader-ring-wrap">
+      <div class="loader-ring loader-ring-1"></div>
+      <div class="loader-ring loader-ring-2"></div>
+    </div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar" id="loaderBar"></div>
+    </div>
+    <div class="loader-text">LOADING...</div>
+  </div>
+
+  <!-- 3D Background Canvas -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-bar" id="scrollBar"></div>
+
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <div class="nav-logo" onclick="goTo('home')">
+        <div class="logo-box">PM</div>
+        <div>
+          <div class="logo-name">PRADEEP</div>
+          <div class="logo-role">FULL STACK DEVELOPER & AI EXPERT</div>
+        </div>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <button class="nl active" data-s="home" onclick="goTo('home')">Home</button>
+        <button class="nl" data-s="about" onclick="goTo('about')">About</button>
+        <button class="nl" data-s="projects" onclick="goTo('projects')">Projects</button>
+        <button class="nl" data-s="services" onclick="goTo('services')">Services</button>
+        <button class="nl" data-s="pricing" onclick="goTo('pricing')">Pricing</button>
+        <button class="nl" data-s="testimonials" onclick="goTo('testimonials')">Testimonials</button>
+        <button class="nl" data-s="contact" onclick="goTo('contact')">Contact</button>
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">🌙</button>
+        <button class="hire-btn" onclick="goTo('contact')">Hire Me</button>
+      </div>
+
+      <div class="mob-ctrl">
+        <button class="theme-btn" id="themeBtnMob" onclick="toggleTheme()">🌙</button>
+        <button class="ham-btn" id="hamBtn" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mob-drawer" id="mobDrawer">
+      <button class="ml active" data-s="home" onclick="goTo('home');closeMenu()">Home</button>
+      <button class="ml" data-s="about" onclick="goTo('about');closeMenu()">About</button>
+      <button class="ml" data-s="projects" onclick="goTo('projects');closeMenu()">Projects</button>
+      <button class="ml" data-s="services" onclick="goTo('services');closeMenu()">Services</button>
+      <button class="ml" data-s="pricing" onclick="goTo('pricing');closeMenu()">Pricing</button>
+      <button class="ml" data-s="testimonials" onclick="goTo('testimonials');closeMenu()">Testimonials</button>
+      <button class="ml" data-s="contact" onclick="goTo('contact');closeMenu()">Contact</button>
+      <button class="hire-btn w100" onclick="goTo('contact');closeMenu()">🚀 Hire Me</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section id="home" class="hero">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+
+    <div class="hero-body">
+      <div class="avail-badge" data-aos="fade-down" data-aos-duration="700">
+        <span class="green-dot"></span> AVAILABLE FOR FREELANCE
+      </div>
+
+      <h1 class="hero-h1" data-aos="fade-up" data-aos-duration="800" data-aos-delay="80">
+        I Build <span class="gtext">Modern Web</span><br>Applications
+      </h1>
+
+      <p class="hero-p" data-aos="fade-up" data-aos-duration="800" data-aos-delay="160">
+        Pixel-perfect React frontends to scalable Python backends with Django &amp; Flask —
+        crafted with precision, deployed with confidence.
+      </p>
+
+      <div class="hero-btns" data-aos="fade-up" data-aos-duration="700" data-aos-delay="240">
+        <button class="btn-pri" onclick="goTo('contact')">🚀 Hire Me</button>
+        <button class="btn-sec" onclick="goTo('projects')">View Projects →</button>
+      </div>
+
+      <div class="hero-stats" data-aos="fade-up" data-aos-duration="700" data-aos-delay="320">
+        <div class="hstat">
+          <span class="hstat-n gtext counter-num" data-target="50" data-suffix="+">03+</span>
+          <span class="hstat-l">Projects</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n counter-num" data-target="30" data-suffix="+">03+</span>
+          <span class="hstat-l">Clients</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n counter-num" data-target="3" data-suffix="yr">02yr</span>
+          <span class="hstat-l">Experience</span>
+        </div>
+        <div class="hstat-div"></div>
+        <div class="hstat">
+          <span class="hstat-n">5★</span>
+          <span class="hstat-l">Rating</span>
+        </div>
+      </div>
+
+      <div class="hero-pills" data-aos="fade-up" data-aos-duration="700" data-aos-delay="400">
+        <span class="pill">React</span><span class="pill">Next.js</span>
+        <span class="pill">Python</span><span class="pill">Django</span>
+        <span class="pill">Flask</span><span class="pill">Node.js</span>
+        <span class="pill">PostgreSQL</span>
+      </div>
+
+      <div class="hero-socials" data-aos="fade-up" data-aos-duration="700" data-aos-delay="470">
+        <a href="https://github.com" target="_blank" class="soc-icon" title="GitHub">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+          </svg>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="soc-icon" title="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+        <a href="https://twitter.com" target="_blank" class="soc-icon" title="Twitter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+        <a href="https://instagram.com/pradeep_webdev" target="_blank" class="soc-icon" title="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ TECH STACK ══════════════ -->
+  <section class="tech-sec">
+    <div class="sec-hdr" data-aos="fade-up">
+      <div class="sec-label">Tech Stack</div>
+      <h2 class="sec-title">Technologies I <span class="gtext">Work With</span></h2>
+    </div>
+    <div class="marquee-wrap" data-aos="fade-up" data-aos-delay="100">
+      <div class="mq-row">
+        <div class="mq-track left" id="mq1"></div>
+      </div>
+      <div class="mq-row mt14">
+        <div class="mq-track right" id="mq2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ ABOUT ══════════════ -->
+  <section id="about" class="sec">
+    <div class="ctr">
+      <div class="about-grid">
+        <div class="about-left">
+          <div class="sec-label" data-aos="fade-right">About Me</div>
+          <h2 class="sec-title" data-aos="fade-right" data-aos-delay="80">
+            Building Products That<br><span class="gtext">Make a Difference</span>
+          </h2>
+          <p class="body-txt" data-aos="fade-right" data-aos-delay="140">I'm a passionate full-stack developer with 3+
+            years of experience building web applications. I combine strong engineering principles with clean,
+            maintainable code and thoughtful UI design.</p>
+          <p class="body-txt" data-aos="fade-right" data-aos-delay="180">I specialise in Python (Django/Flask), React,
+            Next.js, and full-stack JavaScript — and I love solving real problems for real users.</p>
+          <div class="about-cards" data-aos="fade-up" data-aos-delay="240">
+            <div class="acard purple">
+              <span class="acard-n counter-num" data-target="50" data-suffix="+">50+</span>
+              <span class="acard-l">Projects</span>
+            </div>
+            <div class="acard blue">
+              <span class="acard-n counter-num" data-target="30" data-suffix="+">30+</span>
+              <span class="acard-l">Clients</span>
+            </div>
+            <div class="acard plain">
+              <span class="acard-n counter-num" data-target="3" data-suffix="yr">3yr</span>
+              <span class="acard-l">Experience</span>
+            </div>
+          </div>
+        </div>
+        <div class="about-right" data-aos="fade-left" data-aos-delay="120">
+          <h3 class="skills-ttl">Technical Skills</h3>
+          <div class="skills-grid" id="skillsGrid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PROJECTS ══════════════ -->
+  <section id="projects" class="sec alt">
+    <div class="ctr">
+      <div class="sec-hdr" data-aos="fade-up">
+        <div class="sec-label">My Work</div>
+        <h2 class="sec-title"><span class="gtext">Projects</span></h2>
+        <p class="sec-sub">Click any card to see full details.</p>
+      </div>
+      <div class="proj-grid" id="projGrid"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ SERVICES ══════════════ -->
+  <section id="services" class="sec">
+    <div class="ctr">
+      <div class="sec-hdr" data-aos="fade-up">
+        <div class="sec-label">What I Do</div>
+        <h2 class="sec-title">Services I <span class="gtext">Offer</span></h2>
+      </div>
+      <div class="svc-grid" id="svcGrid"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PRICING ══════════════ -->
+  <section id="pricing" class="sec alt">
+    <div class="ctr">
+      <div class="sec-hdr" data-aos="fade-up">
+        <div class="sec-label">Pricing</div>
+        <h2 class="sec-title">Transparent <span class="gtext">Pricing</span></h2>
+        <p class="sec-sub">No hidden fees. No surprises. Just honest, value-driven pricing.</p>
+      </div>
+      <div class="price-grid" id="priceGrid"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ TESTIMONIALS ══════════════ -->
+  <section id="testimonials" class="sec">
+    <div class="ctr">
+      <div class="sec-hdr" data-aos="fade-up">
+        <div class="sec-label">Testimonials</div>
+        <h2 class="sec-title">What <span class="gtext">Clients</span> Say</h2>
+      </div>
+      <div class="testi-grid" id="testiGrid"></div>
+      <div class="dot-row" id="dotRow"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="sec alt">
+    <div class="ctr narrow">
+      <div class="sec-hdr" data-aos="fade-up">
+        <div class="sec-label">FAQ</div>
+        <h2 class="sec-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-wrap" id="faqWrap"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <section id="contact" class="sec">
+    <div class="ctr">
+      <div class="contact-wrap">
+
+        <!-- Info -->
+        <div class="c-info" data-aos="fade-right" data-aos-duration="800">
+          <div class="c-tagline">
+            <span class="c-tagline-dot"></span>
+            RESPONDING WITHIN 24 HOURS
+          </div>
+          <div class="sec-label">Get In Touch</div>
+          <h2 class="sec-title">Let's Build Something<br><span class="gtext">Remarkable Together</span></h2>
+          <p class="body-txt" style="margin:14px 0 0">Have a project in mind? Fill out the form and I'll get back to you
+            within 24 hours via WhatsApp with a detailed response.</p>
+
+          <div class="c-details">
+            <div class="c-row">
+              <div class="c-ico">📧</div>
+              <div class="c-col">
+                <span class="c-lbl">Email</span>
+                <span class="c-val">pradeepmohan63744@gmail.com</span>
+              </div>
+            </div>
+            <div class="c-row">
+              <div class="c-ico">💬</div>
+              <div class="c-col">
+                <span class="c-lbl">WhatsApp</span>
+                <span class="c-val">+91 73975 69979</span>
+              </div>
+            </div>
+            <div class="c-row">
+              <div class="c-ico">📍</div>
+              <div class="c-col">
+                <span class="c-lbl">Location</span>
+                <span class="c-val">Available Worldwide (Remote)</span>
+              </div>
+            </div>
+            <div class="c-row">
+              <div class="c-ico">⏰</div>
+              <div class="c-col">
+                <span class="c-lbl">Working Hours</span>
+                <span class="c-val">Mon–Sat, 9 AM – 8 PM IST</span>
+              </div>
+            </div>
+          </div>
+
+          <a class="wa-btn"
+            href="https://wa.me/917397569979?text=%F0%9F%91%8B%20Hello%20Pradeep!%0A%0AI%20visited%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project.%0A%0ALooking%20forward%20to%20connecting!%20%F0%9F%9A%80"
+            target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+            </svg>
+            Chat on WhatsApp
+            <span class="wa-btn-sub">Fastest Response</span>
+          </a>
+        </div>
+
+        <!-- Form -->
+        <div class="c-form-card" data-aos="fade-left" data-aos-duration="800" id="cFormCard">
+          <div class="form-top-bar"></div>
+          <div class="c-form-inner">
+            <h3 class="form-ttl">Book a Project</h3>
+            <p class="form-sub">Fill out the form and I'll reach out within 24 hours.</p>
+
+            <div class="f-row">
+              <div class="f-grp">
+                <label class="f-lbl">Full Name <span class="req">*</span></label>
+                <div class="f-inp-wrap">
+                  <span class="f-ico">👤</span>
+                  <input type="text" id="fname" class="f-inp" placeholder="Your full name" />
+                </div>
+              </div>
+              <div class="f-grp">
+                <label class="f-lbl">Email Address</label>
+                <div class="f-inp-wrap">
+                  <span class="f-ico">📧</span>
+                  <input type="email" id="femail" class="f-inp" placeholder="you@example.com" />
+                </div>
+              </div>
+            </div>
+
+            <div class="f-grp">
+              <label class="f-lbl">Phone Number</label>
+              <div class="f-inp-wrap">
+                <span class="f-ico">📱</span>
+                <input type="tel" id="fphone" class="f-inp" placeholder="+91 XXXXXXXXXX" />
+              </div>
+            </div>
+
+            <div class="f-grp">
+              <label class="f-lbl">Service Required <span class="req">*</span></label>
+              <div class="f-inp-wrap">
+                <span class="f-ico">🛠️</span>
+                <select id="fservice" class="f-inp f-sel">
+                  <option value="">Select a service…</option>
+                  <option>Web Development</option>
+                  <option>Full Stack Development</option>
+                  <option>E-commerce Website</option>
+                  <option>Portfolio Website</option>
+                  <option>Landing Page</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="f-grp">
+              <label class="f-lbl">Budget Range</label>
+              <div class="f-inp-wrap">
+                <span class="f-ico">💰</span>
+                <select id="fbudget" class="f-inp f-sel">
+                  <option value="">Select budget…</option>
+                  <option>Under ₹5000</option>
+                  <option>₹5000 – ₹7000</option>
+                  <option>₹8000 – ₹10,000</option>
+                  <option>₹10,000 – ₹15,000</option>
+                  <option>₹20,000+</option>
+                  <option>Let's Discuss</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="f-grp">
+              <label class="f-lbl">Project Description</label>
+              <textarea id="fmsg" class="f-inp f-ta" rows="4" placeholder="Tell me about your project…"></textarea>
+            </div>
+
+            <button class="f-submit" id="fSubmit" onclick="submitForm()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+              </svg>
+              Send via WhatsApp
+            </button>
+            <p class="f-note">Your details go directly to WhatsApp — fast response guaranteed.</p>
+          </div>
+        </div>
+
+        <!-- Success -->
+        <div class="form-ok hidden" id="formOk" data-aos="zoom-in">
+          <div class="ok-circle">✓</div>
+          <h3>Message Sent!</h3>
+          <p>WhatsApp has been opened with your project details.<br>I'll respond within 24 hours. 🚀</p>
+          <button class="btn-sec" onclick="resetForm()">Send Another Message</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="ctr">
+      <div class="foot-inner">
+
+        <!-- CTA strip -->
+        <div class="foot-newsletter" data-aos="fade-up">
+          <div class="foot-nl-text">
+            <h4>Ready to build something amazing?</h4>
+            <p>Let's turn your idea into a product users love.</p>
+          </div>
+          <div class="foot-nl-cta">
+            <a class="foot-nl-wa"
+              href="https://wa.me/917397569979?text=%F0%9F%91%8B%20Hello%20Pradeep!%0A%0AI%20visited%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20project.%0A%0ALooking%20forward%20to%20connecting!%20%F0%9F%9A%80"
+              target="_blank">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+              </svg>
+              WhatsApp Me
+            </a>
+            <button class="foot-nl-btn" onclick="goTo('contact')">Book a Project</button>
+          </div>
+        </div>
+
+        <!-- Main grid -->
+        <div class="foot-grid" data-aos="fade-up" data-aos-delay="60">
+
+          <!-- Brand -->
+          <div class="foot-brand">
+            <div class="nav-logo" style="margin-bottom:12px">
+              <div class="logo-box">PM</div>
+              <div>
+                <div class="logo-name">PRADEEP</div>
+                <div class="logo-role">FULL STACK DEVELOPER & AI EXPERT</div>
+              </div>
+            </div>
+            <p class="foot-p">Full-stack developer crafting premium web applications for startups and businesses
+              worldwide.</p>
+            <div class="foot-soc">
+              <a href="https://github.com" class="soc-icon" target="_blank" title="GitHub">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+                </svg>
+              </a>
+              <a href="https://linkedin.com" class="soc-icon" target="_blank" title="LinkedIn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+              <a href="https://twitter.com" class="soc-icon" target="_blank" title="Twitter">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+              </a>
+              <a href="https://instagram.com/pradeep_webdev" class="soc-icon" target="_blank" title="Instagram">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+            </div>
+            <div class="foot-stats">
+              <div class="foot-stat">
+                <span class="foot-stat-n counter-num" data-target="50" data-suffix="+">50+</span>
+                <span class="foot-stat-l">Projects</span>
+              </div>
+              <div class="foot-stat">
+                <span class="foot-stat-n counter-num" data-target="30" data-suffix="+">30+</span>
+                <span class="foot-stat-l">Clients</span>
+              </div>
+              <div class="foot-stat">
+                <span class="foot-stat-n counter-num" data-target="3" data-suffix="yr">3yr</span>
+                <span class="foot-stat-l">Experience</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div class="foot-col">
+            <h4 class="foot-h">Services</h4>
+            <a onclick="goTo('services')">Web Development</a>
+            <a onclick="goTo('services')">Full Stack Dev</a>
+            <a onclick="goTo('services')">E-commerce</a>
+            <a onclick="goTo('services')">Portfolio Sites</a>
+            <a onclick="goTo('services')">Landing Pages</a>
+          </div>
+
+          <!-- Links -->
+          <div class="foot-col">
+            <h4 class="foot-h">Navigate</h4>
+            <a onclick="goTo('about')">About Me</a>
+            <a onclick="goTo('projects')">Projects</a>
+            <a onclick="goTo('pricing')">Pricing</a>
+            <a onclick="goTo('testimonials')">Testimonials</a>
+            <a onclick="goTo('contact')">Contact</a>
+          </div>
+
+          <!-- Contact info -->
+          <div class="foot-col foot-contact-col">
+            <h4 class="foot-h">Contact</h4>
+            <div class="foot-col-item">
+              <div class="fc-ico">📧</div>
+              <span class="fc-txt">pradeepmohan63744<br>@gmail.com</span>
+            </div>
+            <div class="foot-col-item">
+              <div class="fc-ico">💬</div>
+              <span class="fc-txt">+91 73975 69979</span>
+            </div>
+            <div class="foot-col-item">
+              <div class="fc-ico">⏰</div>
+              <span class="fc-txt">Mon–Sat, 9AM–8PM IST</span>
+            </div>
+            <div class="foot-col-item">
+              <div class="fc-ico">📍</div>
+              <span class="fc-txt">Available Worldwide</span>
+            </div>
+          </div>
+
+        </div><!-- /foot-grid -->
+
+        <!-- Bottom bar -->
+        <div class="foot-bottom">
+          <div class="foot-bottom-left">
+            <span class="foot-copy">© 2026 PRADEEP. All rights reserved.</span>
+            <span class="foot-made">Designed &amp; Developed with ❤️ by <span>PRADEEP</span></span>
+          </div>
+          <div class="foot-bottom-right">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#" onclick="goTo('contact')">Hire Me</a>
+          </div>
+        </div>
+
+      </div><!-- /foot-inner -->
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="btt hidden" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+  <!-- Project Modal -->
+  <div class="modal-bg hidden" id="modalBg" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <img class="modal-img" id="mImg" src="" alt="" />
+      <div class="modal-content">
+        <div class="modal-top">
+          <h3 class="modal-ttl" id="mTitle"></h3>
+          <button class="modal-cls" onclick="closeModal()">✕</button>
+        </div>
+        <p class="modal-desc" id="mDesc"></p>
+        <div class="modal-tags" id="mTags"></div>
+        <div class="modal-actions">
+          <a class="mb-gh" id="mGh" href="#" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+            </svg>
+            GitHub
+          </a>
+          <a class="mb-demo" id="mDemo" href="#" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" />
+              <line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AOS + Script -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

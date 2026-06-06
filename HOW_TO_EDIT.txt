@@ -1,0 +1,110 @@
+╔══════════════════════════════════════════════════════════╗
+║         PRADEEP Portfolio — How to Edit Guide            ║
+╚══════════════════════════════════════════════════════════╝
+
+📁 FILE STRUCTURE
+─────────────────
+  index.html   ← Page structure (sections, layout)
+  style.css    ← All colors, fonts, spacing, animations
+  script.js    ← All content + logic (EDIT THIS MAINLY)
+  projects/    ← Put your project screenshots here
+
+═══════════════════════════════════════════════════════════
+  ✏️  EDIT CONTENT → Open script.js
+═══════════════════════════════════════════════════════════
+
+1. YOUR DETAILS (top of script.js)
+   ─────────────────────────────────
+   const CONFIG = {
+     name:      "PRADEEP",
+     waNumber:  "917397569979",     ← your WhatsApp
+     email:     "pradeepmohan63744@gmail.com",
+     instagram: "https://instagram.com/yourhandle",
+     github:    "https://github.com/yourhandle",
+   };
+
+2. PROJECTS (in script.js)
+   ────────────────────────
+   const PROJECTS = [
+     {
+       title:  "Your Project Name",
+       desc:   "Project description here.",
+       tags:   ["React", "Django", "PostgreSQL"],
+       img:    "projects/project1.jpg",   ← your screenshot
+       github: "https://github.com/...",
+       demo:   "https://yoursite.vercel.app",
+     },
+     ...
+   ];
+
+   HOW TO ADD YOUR PHOTO:
+   → Take a screenshot of your project (browser / Lightshot)
+   → Save as project1.jpg inside the projects/ folder
+   → Change img: "projects/project1.jpg" in PROJECTS
+
+3. SERVICES (in script.js)
+   ─────────────────────────
+   Change icon (emoji), title, desc, tags in SERVICES array
+
+4. PRICING (in script.js)
+   ────────────────────────
+   Change price, features in PRICING array
+
+5. TESTIMONIALS (in script.js)
+   ─────────────────────────────
+   Change name, role, avatar (2 initials), text in TESTIMONIALS
+
+═══════════════════════════════════════════════════════════
+  🎨  CHANGE COLORS → Open style.css
+═══════════════════════════════════════════════════════════
+
+Find these and change:
+  #7c3aed  ← Primary purple (buttons, gradients)
+  #2563eb  ← Primary blue
+  #a78bfa  ← Light purple (labels, accents)
+  #38bdf8  ← Light blue (accents)
+
+═══════════════════════════════════════════════════════════
+  🌙  DARK MODE DEFAULT
+═══════════════════════════════════════════════════════════
+
+In script.js, find applyTheme():
+  const saved = localStorage.getItem("theme") || "light";
+  Change "light" to "dark" to default dark mode.
+
+═══════════════════════════════════════════════════════════
+  🚀  HOW TO HOST (FREE)
+═══════════════════════════════════════════════════════════
+
+OPTION 1 — Netlify (Easiest, no setup):
+  1. Go to app.netlify.com
+  2. Drag this entire folder onto the page
+  3. Done! Live in seconds ✅
+
+OPTION 2 — GitHub Pages (Free):
+  1. Create GitHub repo
+  2. Upload all files
+  3. Settings → Pages → Deploy from main branch
+  4. Live at: https://yourname.github.io/repo-name ✅
+
+OPTION 3 — Vercel:
+  1. Push to GitHub
+  2. Import at vercel.com
+  3. Deploy ✅
+
+═══════════════════════════════════════════════════════════
+  📱  WHATSAPP INTEGRATION
+═══════════════════════════════════════════════════════════
+
+When visitor submits form → WhatsApp opens with:
+  👋 Hello PRADEEP!
+  📋 PROJECT DETAILS
+  👤 Name: ...
+  📧 Email: ...
+  🛠️ Service: ...
+  💰 Budget: ...
+  📝 Description: ...
+
+Number set to: +91 73975 69979
+
+═══════════════════════════════════════════════════════════
